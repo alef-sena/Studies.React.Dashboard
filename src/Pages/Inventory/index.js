@@ -10,6 +10,7 @@ function Inventory () {
 		setLoading(true);
 		getInventory().then(res => {
 			setDataSource(res.products);
+			setLoading(false);
 		});
 	}, []);
 
