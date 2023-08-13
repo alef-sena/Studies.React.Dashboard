@@ -2,7 +2,7 @@ import { DollarCircleOutlined, ShoppingCartOutlined, ShoppingOutlined, UserOutli
 import { Card, Space, Statistic, Table, Typography } from 'antd';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { getOrders, getRevenue } from '../../API';
+import { getCustomers, getInventory, getOrders, getRevenue } from '../../API';
 
 import {
 	Chart as ChartJS,
@@ -25,6 +25,25 @@ ChartJS.register(
 );
 
 function Dashboard () {
+
+	const [orders, setOrders] = useState(0);
+	const [inventory, setInventory] = useState(0);
+	const [customers, setCustomers] = useState(0);
+	const [revenue, setRevenue] = useState(0);
+
+	useEffect(() => {
+		getOrders().then(res => {
+			setOrders(res.total);
+			setRevenue(res.discountedTotal);
+		});
+		getInventory().then(res => {
+			setInventory(res.total);
+		});
+		getCustomers().then(res => {
+			setCustomers(res.total);
+		});
+	});
+
 	return (
 		<div>
 			<Space size={20} direction='vertical'>
@@ -41,7 +60,7 @@ function Dashboard () {
 							}}
 						/>}
 						title={'Orders'}
-						value={12345}
+						value={orders}
 					/>
 					<DashboardCard
 						icon={<ShoppingOutlined
@@ -54,7 +73,7 @@ function Dashboard () {
 							}}
 						/>}
 						title={'Inventory'}
-						value={12345}
+						value={inventory}
 					/>
 					<DashboardCard
 						icon={<UserOutlined
@@ -66,8 +85,8 @@ function Dashboard () {
 								padding: 8,
 							}}
 						/>}
-						title={'Customer'}
-						value={12345}
+						title={'Customers'}
+						value={customers}
 					/>
 					<DashboardCard
 						icon={<DollarCircleOutlined
@@ -80,7 +99,7 @@ function Dashboard () {
 							}}
 						/>}
 						title={'Revenue'}
-						value={12345}
+						value={revenue}
 					/>
 				</Space>
 			</Space>
