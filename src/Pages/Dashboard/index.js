@@ -66,7 +66,7 @@ function Dashboard () {
 								padding: 8,
 							}}
 						/>}
-						title={'Custumer'}
+						title={'Customer'}
 						value={12345}
 					/>
 					<DashboardCard

@@ -26,9 +26,9 @@ function SideMenu() {
 					key: '/orders',
 				},
 				{
-					label: 'Custumers',
+					label: 'Customers',
 					icon:<UserOutlined/>,
-					key: '/custumers',
+					key: '/customers',
 				},
 			]}
 		>

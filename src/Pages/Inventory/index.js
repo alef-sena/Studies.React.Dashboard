@@ -25,7 +25,7 @@ function Inventory () {
 							title: 'Thumbnail',
 							dataIndex: 'thumbnail',
 							render: (link) => {
-								return <Avatar scr={link}/>;
+								return <Avatar src={link}/>;
 							},
 						},
 						{
